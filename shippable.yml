@@ -29,7 +29,7 @@ build:
     - mono --version
     - msbuild /version
 
-    - pushd "${SHIPPABLE_BUILD_DIR}/CAB201"
+    - pushd "${SHIPPABLE_BUILD_DIR}"
     - echo 'Restoring NuGet dependencies for CAB201...'
     - msbuild /target:restore /property:Configuration=Release /property:Platform="Any CPU" /maxcpucount /toolsversion:15.0 "Space Race.sln"
     - echo 'Building ModernProjectNet462 using .NET 4.6.2...'
