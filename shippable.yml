@@ -1,0 +1,41 @@
+language: none
+
+# use this to control what branches get built.
+# http://docs.shippable.com/ci/advancedOptions/branches/
+branches:
+  only:
+    - master
+
+# using pre-defined build variables
+# full list http://docs.shippable.com/ci/advancedOptions/environmentVariables/
+env:
+  global:
+    - DOCKER_REPO=u16dotnet
+    - DOCKER_ACC=devopsrecipes # {account name}
+
+build:
+  # Cache NuGet packages
+  cache: true
+  cache_dir_list:
+    - /root/.config/NuGet
+    - /root/.nuget
+  # Use our custom Ubuntu-mono-dotnet20 image to boot the CI build container
+  pre_ci_boot:
+    image_name: devopsrecipes/u16dotnet
+    image_tag: "master.4"
+    options: "-e HOME=/root"
+  ci:
+    - dotnet --version
+    - mono --version
+    - msbuild /version
+
+    - pushd "${SHIPPABLE_BUILD_DIR}/CAB201"
+    - echo 'Restoring NuGet dependencies for CAB201...'
+    - msbuild /target:restore /property:Configuration=Release /property:Platform="Any CPU" /maxcpucount /toolsversion:15.0 "Space Race.sln"
+    - echo 'Building ModernProjectNet462 using .NET 4.6.2...'
+    - msbuild /property:Configuration=Release /property:Platform="Any CPU" /maxcpucount /toolsversion:15.0 "Space Race.sln"
+    - pushd "${SHIPPABLE_BUILD_DIR}/CAB201/Space Race/bin/Release/Space Race"
+    - echo 'Running ModernProjectNet462 using mono 5...'
+    - mono Space Race.exe #'{"Hello":"World"}'
+    - popd
+    - popd
