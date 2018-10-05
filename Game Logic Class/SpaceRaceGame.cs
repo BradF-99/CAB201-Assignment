@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.ComponentModel;
 using Object_Classes;
 
@@ -58,11 +58,18 @@ namespace Game_Logic_Class
         /// </summary>
         public static void SetUpPlayers() 
         {
+
             // for number of players
             //      create a new player object
             //      initialize player's instance variables for start of a game
             //      add player to the binding list
-                
+            for (int i = 0; i < numberOfPlayers; i++)
+            {
+                Player player = new Player(names[i]);
+                player.RocketFuel = Player.INITIAL_FUEL_AMOUNT;
+                players.Add(player);
+            }
+
         }
 
             /// <summary>
