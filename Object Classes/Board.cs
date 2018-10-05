@@ -103,8 +103,8 @@ namespace Object_Classes {
             squares[START_SQUARE_NUMBER] = new Square("Start", START_SQUARE_NUMBER);
             
             // makes it easier to find the squares 
-            List<int> wormHoleSquares = new List<int>() { 2, 3, 5, 12, 16, 29, 40, 45 }; 
-            List<int> blackHoleSquares = new List<int>() { 10, 26, 30, 35, 36, 49, 52, 53 };
+            List<int> wormHoleSquares = new List<int> { 2, 3, 5, 12, 16, 29, 40, 45 }; 
+            List<int> blackHoleSquares = new List<int> { 10, 26, 30, 35, 36, 49, 52, 53 };
 
             int wormHoleCount = 0;
             int blackHoleCount = 0;
