@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Object_Classes {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Object_Classes {
             {10, 4, 6},
             {26, 8, 18},
             {30, 19, 11},
-            {35,11, 24},
+            {35, 11, 24},
             {36, 34, 2},
             {49, 13, 36},
             {52, 41, 11},
@@ -92,17 +93,33 @@ namespace Object_Classes {
         /// Pre:  none
         /// Post: board is constructed
         /// </summary>
+        /// STATUS: Ready for Review
+        /// NOTES: N/A
+        /// Testing: Complete - Passes all testing, waiting on CI
+
         public static void SetUpBoard() {
 
             // Create the 'start' square where all players will start.
             squares[START_SQUARE_NUMBER] = new Square("Start", START_SQUARE_NUMBER);
+            
+            // makes it easier to find the squares 
+            List<int> wormHoleSquares = new List<int> { 2, 3, 5, 12, 16, 29, 40, 45 }; 
+            List<int> blackHoleSquares = new List<int> { 10, 26, 30, 35, 36, 49, 52, 53 };
 
-            // Create the main part of the board, squares 1 .. 54
-            //  CODE NEEDS TO BE ADDED HERE
-            //
-            //   Need to call the appropriate constructor for each square
-            //       either new Square(...),  new WormholeSquare(...) or new BlackholeSquare(...)
-            //
+            int wormHoleCount = 0;
+            int blackHoleCount = 0;
+
+            for (int i = 1; i < NUMBER_OF_SQUARES - 1; i++){ // start at 1 and finish at 54
+                if (wormHoleSquares.Contains(i)){
+                    squares[i] = new WormholeSquare("Wormhole", i, wormHoles[wormHoleCount, 1], wormHoles[wormHoleCount, 2]); // what does name need to be?
+                    wormHoleCount++;
+                } else if (blackHoleSquares.Contains(i)){
+                    squares[i] = new BlackholeSquare("Blackhole", i, blackHoles[blackHoleCount, 1], blackHoles[blackHoleCount, 2]);
+                    blackHoleCount++;
+                } else {
+                    squares[i] = new Square("Ordinary",i);
+                }
+            }
 
             // Create the 'finish' square.
             squares[FINISH_SQUARE_NUMBER] = new Square("Finish", FINISH_SQUARE_NUMBER);
@@ -119,11 +136,15 @@ namespace Object_Classes {
         /// <param name="squareNum"> a square number of either a Wormhole or Blackhole square</param>
         /// <param name="destNum"> destination square's number</param>
         /// <param name="amount"> amont of fuel used to jump to the deestination square</param>
+        /// STATUS: Ready for Review
+        /// NOTES: Completely unused and not necessary: checked with tutor.
+        /// TESTED: No
         private static void FindDestSquare(int[,] holes, int squareNum, out int destNum, out int amount) {
             const int start = 0, exit = 1, fuel = 2;
             destNum = 0; amount = 0;
 
-            //  CODE NEEDS TO BE ADDED HERE 
+            destNum = holes[squareNum,exit];
+            amount = holes[squareNum,fuel];
 
         } //end FindDestSquare
 

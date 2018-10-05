@@ -16,8 +16,9 @@ namespace Space_Race
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
-        {      
-             DisplayIntroductionMessage();
+        {
+            Board.SetUpBoard();
+            DisplayIntroductionMessage();
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
@@ -31,7 +32,6 @@ namespace Space_Race
              Output each player's details at end of the game
            */
            
-                
             PressEnter();
 
         }//end Main
