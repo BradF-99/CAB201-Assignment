@@ -67,6 +67,8 @@ namespace Game_Logic_Class
             {
                 Player player = new Player(names[i]);
                 player.RocketFuel = Player.INITIAL_FUEL_AMOUNT;
+                player.Location = Board.StartSquare;
+                player.Position = 0;
                 players.Add(player);
             }
 
@@ -77,7 +79,11 @@ namespace Game_Logic_Class
             /// </summary>
             public static void PlayOneRound() 
         {
-
+            for (int i = 0; i < numberOfPlayers; i++)
+            {
+                Players[i].Play(die1, die2);
+                System.Console.WriteLine(Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining ");
+            }
         }
 
     }//end SnakesAndLadders
