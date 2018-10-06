@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 //DO NOT DELETE the two following using statements *********************************
 using Game_Logic_Class;
 using Object_Classes;
@@ -19,6 +19,7 @@ namespace Space_Race
         {
             Board.SetUpBoard();
             DisplayIntroductionMessage();
+
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
@@ -31,7 +32,7 @@ namespace Space_Race
              Determine if anyone has won
              Output each player's details at end of the game
            */
-           
+
             PressEnter();
 
         }//end Main
@@ -45,6 +46,12 @@ namespace Space_Race
         static void DisplayIntroductionMessage()
         {
             Console.WriteLine("Welcome to Space Race.\n");
+            Console.WriteLine("This game is for 2 to 6 players.\n");
+            Console.Write("How many players (2-6)? : ");
+            string input = Console.ReadLine();
+            int players = Check_Input(input);
+            SpaceRaceGame.NumberOfPlayers = players;
+            SpaceRaceGame.SetUpPlayers();
         } //end DisplayIntroductionMessage
 
         /// <summary>
@@ -58,7 +65,19 @@ namespace Space_Race
             Console.ReadLine();
         } // end PressAny
 
+        public static int Check_Input(string input)
+        {
 
+            bool TryInput = int.TryParse(input, out int int_input);
+            if ((int_input < 2 || int_input > 6) || !TryInput)
+            {
+                Console.Write("Invalid amount of players entered, please enter a number between 2 and 6 : ");
+                string input2 = Console.ReadLine();
+                int_input = Check_Input(input2);
+            }
+            return int_input;
+
+        }
 
     }//end Console class
 }
