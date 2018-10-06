@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Diagnostics;
 
-namespace Object_Classes {
+namespace Object_Classes
+{
     /// <summary>
     /// A player who is currently located  on a particular square 
     ///   with a certain amount of rocket fuel remaining
@@ -136,10 +137,10 @@ namespace Object_Classes {
         /// <param name="d1">first die</param>
         /// <param name="d2">second die</param>
         public void Play(Die d1, Die d2) {
-
-            //  CODE NEEDS TO BE ADDED HERE
-
-
+            int totalroll = d1.Roll() + d2.Roll();
+            Position += totalroll;
+            Location = Board.Squares[Position];
+            Location.LandOn(this);
         } // end Play.
 
 
@@ -152,13 +153,13 @@ namespace Object_Classes {
         /// <param name="amount">amount of fuel used</param>
         public void ConsumeFuel(int amount) {
             Debug.Assert(amount > 0, "amount > 0");
-            if (fuelLeft >= amount) {
+            if (fuelLeft > amount) {
                 fuelLeft -= amount;
             } else {
                 fuelLeft = 0;
                 HasPower = false;
             }
-        } //end ConskeFuel;
+        } //end ConsumeFuel;
 
 
         /// <summary>
