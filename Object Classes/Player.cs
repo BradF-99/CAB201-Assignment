@@ -139,8 +139,12 @@ namespace Object_Classes
         public void Play(Die d1, Die d2) {
             int totalroll = d1.Roll() + d2.Roll();
             Position += totalroll;
+            if(Position > 55) {
+                Position = 55;
+            }
             Location = Board.Squares[Position];
             Location.LandOn(this);
+            ReachedFinalSquare();
         } // end Play.
 
 
@@ -167,10 +171,15 @@ namespace Object_Classes
         /// </summary>
         /// <returns>true if reached the Final Square</returns>
         private bool ReachedFinalSquare() {
-
-            //  CODE NEEDS TO BE ADDED HERE
-
-            return false; // so the class can compile without error
+            if (Position >= 55)
+            {
+                AtFinish = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            } // so the class can compile without error
         } //end ReachedFinalSquare
 
 
