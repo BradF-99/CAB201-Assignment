@@ -110,10 +110,13 @@ namespace Game_Logic_Class
             //checks if the winning message has already been displayed to not repeat
             bool end_message_displayed = false;
             System.Console.WriteLine("\n\n\tRound " + current_round + "\n");
+            
+            //loop to play through all players
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 Players[i].Play(die1, die2);
                 bool player_ended = CheckGameEnd(i);
+                //if game has ended displays the players that have won
                 if (Game_ended)
                 {
                     if(end_message_displayed == false)
@@ -132,6 +135,7 @@ namespace Game_Logic_Class
                 }
             }
 
+            //List all players at the end of the game and which tile they where on and how much fuel left
             if (Game_ended)
             {
                 System.Console.WriteLine("\tIndividual players finished at the locations specified \n\n");
@@ -140,9 +144,14 @@ namespace Game_Logic_Class
                     System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
                 }
             }
+            
             current_round++;
         }
 
+        /// <summary>
+        ///  Checks if players[i] is at the finish tile and returns true
+        /// <param name="i">player number to be checked</param>
+        /// </summary>
         public static bool CheckGameEnd(int i)
         {
             if (Players[i].AtFinish)
