@@ -19,6 +19,7 @@ namespace Space_Race
         {
             Board.SetUpBoard();
             DisplayIntroductionMessage();
+            Play();
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
@@ -63,12 +64,7 @@ namespace Space_Race
             Console.Write("\nPress Enter to terminate program ...");
             Console.ReadLine();
         } // end PressAny
-        
-        /// <summary>
-        /// Checks if the number of players entered is a number between 2 and 6.
-        /// Prompts the user to re-enter the number if invalid.
-        /// </summary>
-        /// <param name="input"></param>
+
         public static int Check_Input(string input)
         {
 
@@ -81,7 +77,24 @@ namespace Space_Race
             }
             return int_input;
 
-        }//end Check_Input
+        }
+
+        /// <summary>
+        /// Pre:  none
+        /// Post: Loops through PlayOneRound until game _ended is true.
+        /// </summary>
+        static void Play()
+        {
+            while (!SpaceRaceGame.Game_ended)
+            {
+                SpaceRaceGame.PlayOneRound();
+                if (!SpaceRaceGame.Game_ended)
+                {
+                    Console.Write("Press Enter key to play another round");
+                    Console.ReadLine();
+                }
+            }
+        }
 
     }//end Console class
 }

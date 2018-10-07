@@ -10,7 +10,7 @@ namespace Game_Logic_Class
         // Minimum and maximum number of players.
         public const int MIN_PLAYERS = 2;
         public const int MAX_PLAYERS = 6;
-   
+
         private static int numberOfPlayers = 2;  //default value for test purposes only 
         public static int NumberOfPlayers
         {
@@ -21,6 +21,34 @@ namespace Game_Logic_Class
             set
             {
                 numberOfPlayers = value;
+            }
+        }
+
+        //indicates if the game is over
+        private static bool game_ended = false;
+        public static bool Game_ended
+        {
+            get
+            {
+                return game_ended;
+            }
+            set
+            {
+                game_ended = value;
+            }
+        }
+
+        //Current round
+        private static int current_round = 1;
+        public static int Current_round
+        {
+            get
+            {
+                return current_round;
+            }
+            set
+            {
+                current_round = value;
             }
         }
 
@@ -79,10 +107,61 @@ namespace Game_Logic_Class
             /// </summary>
             public static void PlayOneRound() 
         {
+            //checks if the winning message has already been displayed to not repeat
+            bool end_message_displayed = false;
+            System.Console.WriteLine("\n\n\tRound " + current_round + "\n");
+            
+            //loop to play through all players
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 Players[i].Play(die1, die2);
-                System.Console.WriteLine(Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining ");
+                bool player_ended = CheckGameEnd(i);
+                //if game has ended displays the players that have won
+                if (Game_ended)
+                {
+                    if(end_message_displayed == false)
+                    {
+                        System.Console.WriteLine("\tThe following player(s) have finished the game");
+                        end_message_displayed = true;
+                    }
+                    if (player_ended)
+                    {
+                        System.Console.WriteLine("\t" + Players[i].Name + "\n");
+                    }
+                }
+                else
+                {
+                    System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
+                }
+            }
+
+            //List all players at the end of the game and which tile they where on and how much fuel left
+            if (Game_ended)
+            {
+                System.Console.WriteLine("\tIndividual players finished at the locations specified \n\n");
+                for (int i = 0; i < numberOfPlayers; i++)
+                {
+                    System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
+                }
+            }
+            
+            current_round++;
+        }
+
+        /// <summary>
+        ///  Checks if players[i] is at the finish tile and returns true
+        /// <param name="i">player number to be checked</param>
+        /// </summary>
+        public static bool CheckGameEnd(int i)
+        {
+            if (Players[i].AtFinish)
+            {
+                Game_ended = true;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
