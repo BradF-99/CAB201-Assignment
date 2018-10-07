@@ -79,6 +79,10 @@ namespace Space_Race
 
         }
 
+        /// <summary>
+        /// Pre:  none
+        /// Post: Loops through PlayOneRound until game _ended is true.
+        /// </summary>
         static void Play()
         {
             while (!SpaceRaceGame.Game_ended)
