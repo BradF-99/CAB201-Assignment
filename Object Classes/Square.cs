@@ -71,7 +71,6 @@ namespace Object_Classes {
         /// <remarks>Virtual method</remarks>
         public virtual void LandOn(Player player) {
             const int fuelUsed = 2;
-
             player.ConsumeFuel(fuelUsed);
         } //end LandOn
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 //DO NOT DELETE the two following using statements *********************************
 using Game_Logic_Class;
 using Object_Classes;
@@ -19,7 +19,14 @@ namespace Space_Race
         {
             Board.SetUpBoard();
             DisplayIntroductionMessage();
-            Play();
+            bool moreplays = true;
+            while (moreplays)
+            {
+                SetupGame();
+                Play();
+                moreplays = AnotherGame();
+            }
+
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
@@ -46,25 +53,83 @@ namespace Space_Race
         static void DisplayIntroductionMessage()
         {
             Console.WriteLine("Welcome to Space Race.\n");
+        } //end DisplayIntroductionMessage
+
+        /// <summary>
+        /// Displays the game rules and prompts user for input
+        /// Pre:    none.
+        /// Post:   Game rule message is displayed to console, input is checked and game is set up .
+        /// </summary>
+        static void SetupGame()
+        {
             Console.WriteLine("This game is for 2 to 6 players.\n");
             Console.Write("How many players (2-6)? : ");
             string input = Console.ReadLine();
             int players = Check_Input(input);
             SpaceRaceGame.NumberOfPlayers = players;
             SpaceRaceGame.SetUpPlayers();
-        } //end DisplayIntroductionMessage
+        }
 
         /// <summary>
+        /// Prompts user to play another game.
+        /// Checks their input and returns the appropriate result
+        /// </summary>
+        static bool AnotherGame()
+        {
+            Console.Write("\n\n\n\n\n Play Again? (Y or N): ");
+            string input = Console.ReadLine();
+            string result = Check_String_Input(input);
+            if (result == "N")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// Checks the users input and returns the input if it meets the requirements
+        /// </summary>
+        /// <param name="input"></param>
+        static string Check_String_Input(string input)
+        {
+            if (input == "y" || input == "Y" || input == "yes")
+            {
+                return "Y";
+            }else if(input == "n" || input == "N" || input == "no")
+            {
+                return "N";
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input, please answer Y or N");
+                Console.Write("Play Again ? (Y or N): ");
+                string input2 = Console.ReadLine();
+                input = Check_String_Input(input2);
+            }
+            return input;
+        }
+        /// <summary
         /// Displays a prompt and waits for a keypress.
         /// Pre:  none
         /// Post: a key has been pressed.
         /// </summary>
+        /// 
         static void PressEnter()
         {
-            Console.Write("\nPress Enter to terminate program ...");
+            Console.WriteLine("\nThank you for playing Space Race");
+            Console.WriteLine("\nPress Enter to terminate program ...");
             Console.ReadLine();
         } // end PressAny
 
+        /// <summary>
+        /// 
+        /// Checks the users input and returns the input if it meets the requirements
+        /// </summary>
+        /// <param name="input"></param>
         public static int Check_Input(string input)
         {
 

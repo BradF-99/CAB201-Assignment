@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.ComponentModel;
 using Object_Classes;
 
@@ -86,6 +86,7 @@ namespace Game_Logic_Class
         /// </summary>
         public static void SetUpPlayers() 
         {
+            players.Clear();
 
             // for number of players
             //      create a new player object
@@ -97,8 +98,12 @@ namespace Game_Logic_Class
                 player.RocketFuel = Player.INITIAL_FUEL_AMOUNT;
                 player.Location = Board.StartSquare;
                 player.Position = 0;
+                player.AtFinish = false;
                 players.Add(player);
             }
+            current_round = 1;
+            game_ended = false;
+            
 
         }
 
