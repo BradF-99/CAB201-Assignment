@@ -76,7 +76,7 @@ namespace Space_Race
         /// </summary>
         static bool AnotherGame()
         {
-            Console.Write("\n\n\n\n\n Play Again? (Y or N): ");
+            Console.Write("\n\n\n\n\nPlay Again? (Y or N): ");
             string input = Console.ReadLine();
             string result = Check_String_Input(input);
             if (result == "N")
@@ -106,7 +106,7 @@ namespace Space_Race
             else
             {
                 Console.WriteLine("Invalid Input, please answer Y or N");
-                Console.Write("Play Again ? (Y or N): ");
+                Console.Write("Play Again? (Y or N): ");
                 string input2 = Console.ReadLine();
                 input = Check_String_Input(input2);
             }
@@ -153,6 +153,10 @@ namespace Space_Race
             while (!SpaceRaceGame.Game_ended)
             {
                 SpaceRaceGame.PlayOneRound();
+                if (SpaceRaceGame.PlayersOutofFuel)
+                {
+                    break;
+                }
                 if (!SpaceRaceGame.Game_ended)
                 {
                     Console.Write("Press Enter key to play another round");

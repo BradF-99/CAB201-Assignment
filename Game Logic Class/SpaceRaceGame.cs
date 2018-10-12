@@ -38,6 +38,20 @@ namespace Game_Logic_Class
             }
         }
 
+        //indicates if all players run out of fuel.
+        private static bool playersOutofFuel = false;
+        public static bool PlayersOutofFuel
+        {
+            get
+            {
+                return playersOutofFuel;
+            }
+            set
+            {
+                playersOutofFuel = value;
+            }
+        }
+
         //Current round
         private static int current_round = 1;
         public static int Current_round
@@ -99,10 +113,12 @@ namespace Game_Logic_Class
                 player.Location = Board.StartSquare;
                 player.Position = 0;
                 player.AtFinish = false;
+                player.HasPower = true;
                 players.Add(player);
             }
             current_round = 1;
             game_ended = false;
+            PlayersOutofFuel = false;
             
 
         }
@@ -115,42 +131,59 @@ namespace Game_Logic_Class
             //checks if the winning message has already been displayed to not repeat
             bool end_message_displayed = false;
             System.Console.WriteLine("\n\n\tRound " + current_round + "\n");
-            
+            int players_no_fuel = 0;
             //loop to play through all players
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 Players[i].Play(die1, die2);
                 bool player_ended = CheckGameEnd(i);
-                //if game has ended displays the players that have won
+                players_no_fuel += CheckOutofFuel(i);
+
+                if (players_no_fuel == numberOfPlayers) //if all players have fun out of fuel
+                {
+                    System.Console.WriteLine("\tAll players have run out of fuel \n");
+                    playersOutofFuel = true;
+                }
+                else  //at least 1 player has fuel
+                {
+                    if (Players[i].HasPower) //Prints current position of player if they have fuel
+                    {
+                        System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
+                    }
+
+                    if (!Game_ended) // if the game is still in play
+                    {
+                        if(!Players[i].HasPower) //if player is out of power
+                        {
+                            System.Console.WriteLine("\t" + Players[i].Name + " has run out of fuel!\n");
+                        }
+                    }
+                    else //if at least one player has finished
+                    {
+                        if (end_message_displayed == false) //if the end game message has not been displayed prior
+                        {
+                            System.Console.WriteLine("\t\nThe following player(s) have finished the game");
+                            end_message_displayed = true;
+                        }
+                        if (player_ended) //displays the player(s) that have won
+                        {
+                            System.Console.WriteLine("\t" + Players[i].Name + "\n");
+                        }
+                    }
+                }
+            }
+                //List all players at the end of the game and which tile they where on and how much fuel left
                 if (Game_ended)
                 {
-                    if(end_message_displayed == false)
+                    System.Console.WriteLine("\tIndividual players finished at the locations specified \n\n");
+                    for (int i = 0; i < numberOfPlayers; i++)
                     {
-                        System.Console.WriteLine("\tThe following player(s) have finished the game");
-                        end_message_displayed = true;
-                    }
-                    if (player_ended)
-                    {
-                        System.Console.WriteLine("\t" + Players[i].Name + "\n");
+                        System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
                     }
                 }
-                else
-                {
-                    System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
-                }
-            }
 
-            //List all players at the end of the game and which tile they where on and how much fuel left
-            if (Game_ended)
-            {
-                System.Console.WriteLine("\tIndividual players finished at the locations specified \n\n");
-                for (int i = 0; i < numberOfPlayers; i++)
-                {
-                    System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
-                }
-            }
+                current_round++;
             
-            current_round++;
         }
 
         /// <summary>
@@ -167,6 +200,22 @@ namespace Game_Logic_Class
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        ///  Checks if players[i] is out of fuel and returns 1
+        /// <param name="i">player number to be checked</param>
+        /// </summary>
+        public static int CheckOutofFuel(int i)
+        {
+            if (Players[i].HasPower)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
             }
         }
 
