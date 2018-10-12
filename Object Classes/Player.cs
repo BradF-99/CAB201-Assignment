@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Diagnostics;
 
@@ -137,14 +137,18 @@ namespace Object_Classes
         /// <param name="d1">first die</param>
         /// <param name="d2">second die</param>
         public void Play(Die d1, Die d2) {
-            int totalroll = d1.Roll() + d2.Roll();
-            Position += totalroll;
-            if(Position > 55) {
-                Position = 55;
+            if (this.hasPower)
+            {
+                int totalroll = d1.Roll() + d2.Roll();
+                Position += totalroll;
+                if (Position > 55)
+                {
+                    Position = 55;
+                }
+                Location = Board.Squares[Position];
+                Location.LandOn(this);
+                ReachedFinalSquare();
             }
-            Location = Board.Squares[Position];
-            Location.LandOn(this);
-            ReachedFinalSquare();
         } // end Play.
 
 
