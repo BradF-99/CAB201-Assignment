@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.IO; // Added for test data addendum
 
 namespace Object_Classes {
 
@@ -64,11 +65,19 @@ namespace Object_Classes {
 
        //-----------------------------------------------------------------
        //  Rolls the die and returns the result.
+       //  Modified for Test Data addendum
        //-----------------------------------------------------------------
        public int Roll() {
-           faceValue =  random.Next(NumOfFaces) + 1;
-           return FaceValue;
-       }
+            if (!DEBUG)
+            {
+                faceValue = random.Next(NumOfFaces) + 1;
+            }
+            else
+            {
+                faceValue = int.Parse(rollFile.ReadLine());
+            }
+            return FaceValue;
+        }
      
      
        //-----------------------------------------------------------------
@@ -82,9 +91,15 @@ namespace Object_Classes {
         // Returns a String representation of the dice's attributes.
         //----------------------------------------------------------------
        public override string ToString() {
-           string str = string.Format("{0}-Sided die showng {1}", numOfFaces, faceValue);
+           string str = string.Format("{0}-Sided die showing {1}", numOfFaces, faceValue);
            
            return str;
        }
+
+       // Added for test data addendum
+       private static string defaultPath = Environment.CurrentDirectory;
+       private static string rollFileName = defaultPath + "\\testrolls.txt";
+       private static StreamReader rollFile = new StreamReader(rollFileName);
+       private static bool DEBUG = false; // change to test file IO
     }
 }

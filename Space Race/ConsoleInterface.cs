@@ -52,7 +52,8 @@ namespace Space_Race
         /// </summary>
         static void DisplayIntroductionMessage()
         {
-            Console.WriteLine("Welcome to Space Race.\n");
+            Console.WriteLine(" ");
+            Console.WriteLine("\tWelcome to Space Race.\n");
         } //end DisplayIntroductionMessage
 
         /// <summary>
@@ -62,8 +63,8 @@ namespace Space_Race
         /// </summary>
         static void SetupGame()
         {
-            Console.WriteLine("This game is for 2 to 6 players.\n");
-            Console.Write("How many players (2-6)? : ");
+            Console.WriteLine("\tThis game is for 2 to 6 players.");
+            Console.Write("\tHow many players (2-6): ");
             string input = Console.ReadLine();
             int players = Check_Input(input);
             SpaceRaceGame.NumberOfPlayers = players;
@@ -136,7 +137,7 @@ namespace Space_Race
             bool TryInput = int.TryParse(input, out int int_input);
             if ((int_input < 2 || int_input > 6) || !TryInput)
             {
-                Console.Write("Invalid amount of players entered, please enter a number between 2 and 6 : ");
+                Console.Write("Invalid amount of players entered, please enter a number between 2 and 6: ");
                 string input2 = Console.ReadLine();
                 int_input = Check_Input(input2);
             }
@@ -159,7 +160,7 @@ namespace Space_Race
                 }
                 if (!SpaceRaceGame.Game_ended)
                 {
-                    Console.Write("Press Enter key to play another round");
+                    Console.WriteLine("\nPress Enter key to play another round...");
                     Console.ReadLine();
                 }
             }

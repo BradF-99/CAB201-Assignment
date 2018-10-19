@@ -108,12 +108,14 @@ namespace Game_Logic_Class
             //      add player to the binding list
             for (int i = 0; i < numberOfPlayers; i++)
             {
-                Player player = new Player(names[i]);
-                player.RocketFuel = Player.INITIAL_FUEL_AMOUNT;
-                player.Location = Board.StartSquare;
-                player.Position = 0;
-                player.AtFinish = false;
-                player.HasPower = true;
+                Player player = new Player(names[i]) // simplified object initialisation
+                {
+                    RocketFuel = Player.INITIAL_FUEL_AMOUNT,
+                    Location = Board.StartSquare,
+                    Position = 0,
+                    AtFinish = false,
+                    HasPower = true
+                };
                 players.Add(player);
             }
             current_round = 1;
@@ -126,14 +128,11 @@ namespace Game_Logic_Class
             /// <summary>
             ///  Plays one round of a game
             /// </summary>
-            public static void PlayOneRound() 
-        {
-            //checks if the winning message has already been displayed to not repeat
-            bool end_message_displayed = false;
-            System.Console.WriteLine("\n\n\tRound " + current_round + "\n");
+            public static void PlayOneRound(){
+            bool end_message_displayed = false; // checks if the winning message has already been displayed to not repeat
+            System.Console.WriteLine("\tRound " + current_round + "\n");
             int players_no_fuel = 0;
-            //loop to play through all players
-            for (int i = 0; i < numberOfPlayers; i++)
+            for (int i = 0; i < numberOfPlayers; i++) // loop through each player
             {
                 Players[i].Play(die1, die2);
                 bool player_ended = CheckGameEnd(i);
@@ -148,7 +147,7 @@ namespace Game_Logic_Class
                 {
                     if (Players[i].HasPower) //Prints current position of player if they have fuel
                     {
-                        System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
+                        System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining");
                     }
 
                     if (!Game_ended) // if the game is still in play
@@ -172,7 +171,7 @@ namespace Game_Logic_Class
                     }
                 }
             }
-                //List all players at the end of the game and which tile they where on and how much fuel left
+                //List all players at the end of the game and which tile they were on and how much fuel left
                 if (Game_ended)
                 {
                     System.Console.WriteLine("\tIndividual players finished at the locations specified \n\n");
@@ -181,9 +180,7 @@ namespace Game_Logic_Class
                         System.Console.WriteLine("\t" + Players[i].Name + " on square " + Players[i].Position + " with " + Players[i].RocketFuel + " yottawatt of power remaining \n");
                     }
                 }
-
                 current_round++;
-            
         }
 
         /// <summary>
