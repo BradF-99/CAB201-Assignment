@@ -1,10 +1,10 @@
 ﻿using System;
 //  Uncomment  this using statement after you have remove the large Block Comment below 
-//using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using Game_Logic_Class;
 //  Uncomment  this using statement when you declare any object from Object Classes, eg Board,Square etc.
-//using Object_Classes;
+using Object_Classes;
 
 namespace GUI_Class
 {
@@ -24,13 +24,13 @@ namespace GUI_Class
         {
             InitializeComponent();
 
-            // Board.SetUpBoard();
-            // ResizeGUIGameBoard();
-            // SetUpGUIGameBoard();
-            // SetUpPlayersDataGridView
+            Board.SetUpBoard();
+            ResizeGUIGameBoard();
+            SetUpGUIGameBoard();
+            //SetUpPlayersDataGridView
             // DetermineNumberOfPlayers();
-            // SpaceRaceGame.SetUpPlayers();
-            // PrepareToPlayGame();
+            //SpaceRaceGame.SetUpPlayers();
+            //PrepareToPlayGame();
         }
 
 
@@ -54,7 +54,7 @@ namespace GUI_Class
         //        Likewise with "playerDataGridView" by your DataGridView (Name)
         //  ******************************************************************************************
 
-/*
+
         /// <summary>
         /// Resizes the entire form, so that the individual squares have their correct size, 
         /// as specified by SquareControl.SQUARE_SIZE.  
@@ -132,7 +132,7 @@ namespace GUI_Class
             playersDataGridView.DataSource = SpaceRaceGame.Players;
 
         }// end SetUpPlayersDataGridView
-*/
+
 
 
         /// <summary>
@@ -186,10 +186,8 @@ namespace GUI_Class
             // Uncomment the following lines once you've added the tableLayoutPanel to your form. 
             //     and delete the "return null;" 
             //
-            // MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
-            // return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
-
-            return null; //added so code compiles
+            MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
+            return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
         }
 
 
@@ -221,7 +219,7 @@ namespace GUI_Class
         private void RefreshBoardTablePanelLayout()
         {
             // Uncomment the following line once you've added the tableLayoutPanel to your form.
-            //      tableLayoutPanel.Invalidate(true);
+                  tableLayoutPanel.Invalidate(true);
         }
 
         /// <summary>
@@ -266,5 +264,19 @@ namespace GUI_Class
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }// end class
 }
