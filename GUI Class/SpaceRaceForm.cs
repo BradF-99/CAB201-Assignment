@@ -27,9 +27,9 @@ namespace GUI_Class
             Board.SetUpBoard();
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
-            //SetUpPlayersDataGridView
-            //DetermineNumberOfPlayers();
-            //SpaceRaceGame.SetUpPlayers();
+            SetupPlayersDataGridView();
+            DetermineNumberOfPlayers();
+            SpaceRaceGame.SetUpPlayers();
             //PrepareToPlayGame();
         }
 
@@ -183,8 +183,16 @@ namespace GUI_Class
         /// </summary>
         private void DetermineNumberOfPlayers()
         {
+            int numPlayers;
             // Store the SelectedItem property of the ComboBox in a string
-
+            if (Int32.TryParse(comboNumPlayers.Text, out numPlayers))
+            {
+                SpaceRaceGame.NumberOfPlayers = numPlayers;
+            }
+            else
+            {
+                // add messagebox or something
+            }
             // Parse string to a number
 
             // Set the NumberOfPlayers in the SpaceRaceGame class to that number
@@ -299,7 +307,7 @@ namespace GUI_Class
             //       using the typeOfGuiUpdate, update the appropriate element of 
             //          the ContainsPlayers array of the SquareControl object.
             //          
-
+            
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 

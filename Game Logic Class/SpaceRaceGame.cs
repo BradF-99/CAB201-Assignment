@@ -114,15 +114,14 @@ namespace Game_Logic_Class
                     Location = Board.StartSquare,
                     Position = 0,
                     AtFinish = false,
-                    HasPower = true
+                    HasPower = true,
+                    PlayerTokenColour = playerTokenColours[i]
                 };
                 players.Add(player);
             }
             current_round = 1;
             game_ended = false;
             PlayersOutofFuel = false;
-            
-
         }
 
             /// <summary>

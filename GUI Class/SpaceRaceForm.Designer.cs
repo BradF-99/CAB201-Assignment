@@ -37,7 +37,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnRoll = new System.Windows.Forms.Button();
             this.labelNumPlayers = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboNumPlayers = new System.Windows.Forms.ComboBox();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
             this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerTokenImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
@@ -70,7 +70,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.playersDataGridView);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.comboNumPlayers);
             this.splitContainer1.Panel2.Controls.Add(this.labelNumPlayers);
             this.splitContainer1.Panel2.Controls.Add(this.btnRoll);
             this.splitContainer1.Panel2.Controls.Add(this.btnReset);
@@ -170,20 +170,20 @@
             this.labelNumPlayers.TabIndex = 5;
             this.labelNumPlayers.Text = "Number of Players";
             // 
-            // comboBox1
+            // comboNumPlayers
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboNumPlayers.FormattingEnabled = true;
+            this.comboNumPlayers.Items.AddRange(new object[] {
             "2",
             "3",
             "4",
             "5",
             "6"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 79);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(35, 21);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.Text = "6";
+            this.comboNumPlayers.Location = new System.Drawing.Point(143, 79);
+            this.comboNumPlayers.Name = "comboNumPlayers";
+            this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
+            this.comboNumPlayers.TabIndex = 6;
+            this.comboNumPlayers.Text = "6";
             // 
             // playersDataGridView
             // 
@@ -303,7 +303,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.Label labelHeader;
         private System.Windows.Forms.Label labelPlayers;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboNumPlayers;
         private System.Windows.Forms.Label labelNumPlayers;
         private System.Windows.Forms.Button btnRoll;
         private System.Windows.Forms.Button btnReset;
