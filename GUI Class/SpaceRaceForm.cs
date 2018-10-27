@@ -28,7 +28,7 @@ namespace GUI_Class
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
             //SetUpPlayersDataGridView
-            // DetermineNumberOfPlayers();
+            //DetermineNumberOfPlayers();
             //SpaceRaceGame.SetUpPlayers();
             //PrepareToPlayGame();
         }
@@ -118,8 +118,47 @@ namespace GUI_Class
 
             // Makes the compiler happy - these two lines below need to deleted 
             //    once mapping code is written above
-            screenRow = 0;
+            screenRow = 0; 
             screenCol = 0;
+
+            /*
+             * Rows
+             * All odd rows are reversed !!
+             * 0 is start and num is finish !!
+             *
+             * 0 - 7 is row 0 (Start @ 0)
+             * 8 - 15 is row 1 (R)
+             * 16 - 23 is row 2
+             * 24 - 31 is row 3 (R)
+             * 32 - 39 is row 4
+             * 40 - 47 is row 5 (R)
+             * 48 - 55 is row 6 (Finish @ 55)
+             *
+             * Top left is 0,0 - Bottom Right is 6,7
+             */
+
+            screenRow = (NUM_OF_ROWS - 1) - (squareNum / NUM_OF_COLUMNS); // subtract rows from square number / columns
+            screenCol = squareNum % NUM_OF_COLUMNS; // divide squareNum by columns and use modulo as the column
+            if (screenRow % 2 != 0) screenCol = (NUM_OF_COLUMNS - 1) - screenCol; // flip column if the row is odd
+
+            // why couldn't we have done this instead
+            //    for (int i = 0; i < 7; i++) // for each row
+            //    {
+            //        for (int j = 0; j < 8; j++) // for each column (or square?)
+            //        {
+            //            screenRow = (7 - i);
+            //            if (i % 2 == 0) // row is even (no reverse)
+            //            {
+            //                screenCol = j;
+            //            }
+            //            else // row is odd
+            //            {
+            //                screenCol = (8 - j);
+            //            }
+            //        }
+            //    }
+            //
+
 
         }//end MapSquareNumToScreenRowAndColumn
 
