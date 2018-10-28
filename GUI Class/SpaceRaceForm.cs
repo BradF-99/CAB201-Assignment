@@ -1,10 +1,10 @@
 ﻿using System;
 //  Uncomment  this using statement after you have remove the large Block Comment below 
-//using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using Game_Logic_Class;
 //  Uncomment  this using statement when you declare any object from Object Classes, eg Board,Square etc.
-//using Object_Classes;
+using Object_Classes;
 
 namespace GUI_Class
 {
@@ -24,13 +24,15 @@ namespace GUI_Class
         {
             InitializeComponent();
 
-            // Board.SetUpBoard();
-            // ResizeGUIGameBoard();
-            // SetUpGUIGameBoard();
-            // SetUpPlayersDataGridView
-            // DetermineNumberOfPlayers();
-            // SpaceRaceGame.SetUpPlayers();
-            // PrepareToPlayGame();
+            Board.SetUpBoard();
+            ResizeGUIGameBoard();
+            SetUpGUIGameBoard();
+            SetupPlayersDataGridView();
+            btnRoll.Enabled = false;
+            btnReset.Enabled = false;
+            DetermineNumberOfPlayers();
+            SpaceRaceGame.SetUpPlayers();
+            //PrepareToPlay();
         }
 
 
@@ -44,17 +46,6 @@ namespace GUI_Class
             Environment.Exit(0);
         }
 
-
-
-        //  ******************* Uncomment - Remove Block Comment below
-        //                         once you've added the TableLayoutPanel to your form.
-        //
-        //       You will have to replace "tableLayoutPanel" by whatever (Name) you used.
-        //
-        //        Likewise with "playerDataGridView" by your DataGridView (Name)
-        //  ******************************************************************************************
-
-/*
         /// <summary>
         /// Resizes the entire form, so that the individual squares have their correct size, 
         /// as specified by SquareControl.SQUARE_SIZE.  
@@ -114,12 +105,25 @@ namespace GUI_Class
         /// <param name="columnNumber">The output column number.</param>
         private static void MapSquareNumToScreenRowAndColumn(int squareNum, out int screenRow, out int screenCol)
         {
-            // Code needs to be added here to do the mapping
+            /*
+             * Rows
+             * All odd rows are reversed !!
+             * 0 is start and num is finish !!
+             *
+             * 0 - 7 is row 0 (Start @ 0)
+             * 8 - 15 is row 1 (R)
+             * 16 - 23 is row 2
+             * 24 - 31 is row 3 (R)
+             * 32 - 39 is row 4
+             * 40 - 47 is row 5 (R)
+             * 48 - 55 is row 6 (Finish @ 55)
+             *
+             * Top left is 0,0 - Bottom Right is 6,7
+             */
 
-            // Makes the compiler happy - these two lines below need to deleted 
-            //    once mapping code is written above
-            screenRow = 0;
-            screenCol = 0;
+            screenRow = (NUM_OF_ROWS - 1) - (squareNum / NUM_OF_COLUMNS); // subtract rows from square number / columns
+            screenCol = squareNum % NUM_OF_COLUMNS; // divide squareNum by columns and use modulo as the column
+            if (screenRow % 2 != 0) screenCol = (NUM_OF_COLUMNS - 1) - screenCol; // flip column if the row is odd
 
         }//end MapSquareNumToScreenRowAndColumn
 
@@ -132,7 +136,7 @@ namespace GUI_Class
             playersDataGridView.DataSource = SpaceRaceGame.Players;
 
         }// end SetUpPlayersDataGridView
-*/
+
 
 
         /// <summary>
@@ -144,8 +148,16 @@ namespace GUI_Class
         /// </summary>
         private void DetermineNumberOfPlayers()
         {
+            int numPlayers;
             // Store the SelectedItem property of the ComboBox in a string
-
+            if (Int32.TryParse(comboNumPlayers.Text, out numPlayers))
+            {
+                SpaceRaceGame.NumberOfPlayers = numPlayers;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid player count between 2 and 6.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             // Parse string to a number
 
             // Set the NumberOfPlayers in the SpaceRaceGame class to that number
@@ -186,10 +198,8 @@ namespace GUI_Class
             // Uncomment the following lines once you've added the tableLayoutPanel to your form. 
             //     and delete the "return null;" 
             //
-            // MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
-            // return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
-
-            return null; //added so code compiles
+            MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
+            return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
         }
 
 
@@ -203,9 +213,7 @@ namespace GUI_Class
         private int GetSquareNumberOfPlayer(int playerNumber)
         {
             // Code needs to be added here.
-
-            //     delete the "return -1;" once body of method has been written 
-            return -1;
+            return SpaceRaceGame.Players[playerNumber].Position;
         }//end GetSquareNumberOfPlayer
 
 
@@ -221,7 +229,7 @@ namespace GUI_Class
         private void RefreshBoardTablePanelLayout()
         {
             // Uncomment the following line once you've added the tableLayoutPanel to your form.
-            //      tableLayoutPanel.Invalidate(true);
+            tableLayoutPanel.Invalidate(true);
         }
 
         /// <summary>
@@ -262,9 +270,119 @@ namespace GUI_Class
             //       using the typeOfGuiUpdate, update the appropriate element of 
             //          the ContainsPlayers array of the SquareControl object.
             //          
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++) // loop through each player
+            {
+                int squareNum = GetSquareNumberOfPlayer(i);
+                SquareControl plySquare = SquareControlAt(squareNum);
+                if (typeOfGuiUpdate == TypeOfGuiUpdate.AddPlayer) plySquare.ContainsPlayers[i] = true;
+                if (typeOfGuiUpdate == TypeOfGuiUpdate.RemovePlayer) plySquare.ContainsPlayers[i] = false;
+            }
 
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
+        private void resetGUI()
+        {
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            comboNumPlayers.Enabled = true;
+            playersDataGridView.Enabled = true;
+            btnReset.Enabled = false;
+            btnRoll.Enabled = false;
+            grpboxStep.Enabled = true;
+            SpaceRaceGame.SetUpPlayers();
+            UpdatesPlayersDataGridView();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRoll_Click(object sender, EventArgs e)
+        {
+            if (grpboxStep.Enabled) // lazy way of telling if it's our first roll
+            {
+                DetermineNumberOfPlayers();
+                SpaceRaceGame.SetUpPlayers();
+                PrepareToPlay();
+                playersDataGridView.Enabled = false;
+                grpboxStep.Enabled = false;
+            }
+
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
+            btnRoll.Enabled = false;
+            comboNumPlayers.Enabled = false;
+            btnReset.Enabled = false;
+
+            if (radioSingleStepTrue.Checked)
+            {
+                if (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound();
+            }
+            else if (radioSingleStepFalse.Checked)
+            {
+                while (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound(); // wao amazing
+            }
+            else // u gotta pick an option !
+            {
+                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+                UpdatesPlayersDataGridView();
+                MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+            btnReset.Enabled = true;
+            btnRoll.Enabled = true;
+
+            if (SpaceRaceGame.Game_ended)
+            {
+
+                string plyEnd = "";
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                {
+                    if (SpaceRaceGame.CheckGameEnd(i))
+                    {
+                        plyEnd = "\n" + plyEnd + SpaceRaceGame.Players[i].Name + " \n";
+                    };
+
+                }
+                MessageBox.Show("The following players finished the game: \n" + plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnRoll.Enabled = false;
+            }
+
+
+        }
+
+        private void radioSingleStepTrue_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRoll.Enabled = true;
+            grpboxStep.Enabled = false;
+        }
+
+        private void radioSingleStepFalse_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRoll.Enabled = true;
+            grpboxStep.Enabled = false;
+        }
+
+        private void comboNumPlayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DetermineNumberOfPlayers();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            resetGUI();
+        }
     }// end class
 }
