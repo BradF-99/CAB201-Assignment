@@ -113,7 +113,7 @@
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.Controls.Add(this.radioSingleStepFalse);
             this.groupBox1.Controls.Add(this.radioSingleStepTrue);
-            this.groupBox1.Location = new System.Drawing.Point(40, 349);
+            this.groupBox1.Location = new System.Drawing.Point(38, 403);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(140, 55);
             this.groupBox1.TabIndex = 8;
@@ -160,7 +160,7 @@
             this.playersDataGridView.Location = new System.Drawing.Point(13, 191);
             this.playersDataGridView.Name = "playersDataGridView";
             this.playersDataGridView.RowHeadersVisible = false;
-            this.playersDataGridView.Size = new System.Drawing.Size(191, 150);
+            this.playersDataGridView.Size = new System.Drawing.Size(191, 197);
             this.playersDataGridView.TabIndex = 7;
             // 
             // playerTokenImageDataGridViewImageColumn

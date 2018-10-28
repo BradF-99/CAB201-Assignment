@@ -114,13 +114,6 @@ namespace GUI_Class
         /// <param name="columnNumber">The output column number.</param>
         private static void MapSquareNumToScreenRowAndColumn(int squareNum, out int screenRow, out int screenCol)
         {
-            // Code needs to be added here to do the mapping
-
-            // Makes the compiler happy - these two lines below need to deleted 
-            //    once mapping code is written above
-            screenRow = 0; 
-            screenCol = 0;
-
             /*
              * Rows
              * All odd rows are reversed !!
@@ -140,25 +133,6 @@ namespace GUI_Class
             screenRow = (NUM_OF_ROWS - 1) - (squareNum / NUM_OF_COLUMNS); // subtract rows from square number / columns
             screenCol = squareNum % NUM_OF_COLUMNS; // divide squareNum by columns and use modulo as the column
             if (screenRow % 2 != 0) screenCol = (NUM_OF_COLUMNS - 1) - screenCol; // flip column if the row is odd
-
-            // why couldn't we have done this instead
-            //    for (int i = 0; i < 7; i++) // for each row
-            //    {
-            //        for (int j = 0; j < 8; j++) // for each column (or square?)
-            //        {
-            //            screenRow = (7 - i);
-            //            if (i % 2 == 0) // row is even (no reverse)
-            //            {
-            //                screenCol = j;
-            //            }
-            //            else // row is odd
-            //            {
-            //                screenCol = (8 - j);
-            //            }
-            //        }
-            //    }
-            //
-
 
         }//end MapSquareNumToScreenRowAndColumn
 
@@ -366,5 +340,6 @@ namespace GUI_Class
         {
 
         }
+        
     }// end class
 }
