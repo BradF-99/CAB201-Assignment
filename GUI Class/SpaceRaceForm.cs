@@ -307,6 +307,7 @@ namespace GUI_Class
 
         }
 
+        public int plyMoves = 0;
         private void btnRoll_Click(object sender, EventArgs e)
         {
             if (grpboxStep.Enabled) // lazy way of telling if it's our first roll
@@ -316,7 +317,9 @@ namespace GUI_Class
                 PrepareToPlay();
                 playersDataGridView.Enabled = false;
                 grpboxStep.Enabled = false;
+                plyMoves = 0;
             }
+
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
             // trillion iq code ahead
             
@@ -326,16 +329,28 @@ namespace GUI_Class
 
             if (radioSingleStepTrue.Checked)
             {
-                if(!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound();
+                if (!SpaceRaceGame.Game_ended)
+                {
+                    if (plyMoves > SpaceRaceGame.NumberOfPlayers)
+                    {
+                        plyMoves = 0;
+                        SpaceRaceGame.PlayOneRound();
+                    }
+                    // ASSASINDIE FIX PLS LMOAH MY LEG
+                    //int squareNum = GetSquareNumberOfPlayer(plyMoves);
+                    //SquareControl plySquare = SquareControlAt(squareNum);
+                    //plySquare.ContainsPlayers[plyMoves] = true;
+                    plyMoves++;
+                }
             }
             else if (radioSingleStepFalse.Checked)
             {
                 while (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound(); // wao amazing
+                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+                UpdatesPlayersDataGridView();
             }
             else // u gotta pick an option !
             {
-                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
-                UpdatesPlayersDataGridView();
                 MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
@@ -353,9 +368,6 @@ namespace GUI_Class
                 }
                 MessageBox.Show("The following players finished the game: \n"+plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
-            UpdatesPlayersDataGridView();
             btnReset.Enabled = true;
             btnRoll.Enabled = true;
 
