@@ -228,7 +228,7 @@ namespace GUI_Class
         private void RefreshBoardTablePanelLayout()
         {
             // Uncomment the following line once you've added the tableLayoutPanel to your form.
-                  tableLayoutPanel.Invalidate(true);
+            tableLayoutPanel.Invalidate(true);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace GUI_Class
                 SquareControl plySquare = SquareControlAt(squareNum);
                 if (typeOfGuiUpdate == TypeOfGuiUpdate.AddPlayer) plySquare.ContainsPlayers[i] = true;
                 if (typeOfGuiUpdate == TypeOfGuiUpdate.RemovePlayer) plySquare.ContainsPlayers[i] = false;
-            } 
+            }
 
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
@@ -307,7 +307,6 @@ namespace GUI_Class
 
         }
 
-        public int plyMoves = 0;
         private void btnRoll_Click(object sender, EventArgs e)
         {
             if (grpboxStep.Enabled) // lazy way of telling if it's our first roll
@@ -317,41 +316,27 @@ namespace GUI_Class
                 PrepareToPlay();
                 playersDataGridView.Enabled = false;
                 grpboxStep.Enabled = false;
-                plyMoves = 0;
             }
-
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
-            // trillion iq code ahead
-            
+                                                                     // trillion iq code ahead
+
             btnRoll.Enabled = false;
             comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
 
             if (radioSingleStepTrue.Checked)
             {
-                if (!SpaceRaceGame.Game_ended)
-                {
-                    if (plyMoves > SpaceRaceGame.NumberOfPlayers)
-                    {
-                        plyMoves = 0;
-                        SpaceRaceGame.PlayOneRound();
-                    }
-                    // ASSASINDIE FIX PLS LMOAH MY LEG
-                    //int squareNum = GetSquareNumberOfPlayer(plyMoves);
-                    //SquareControl plySquare = SquareControlAt(squareNum);
-                    //plySquare.ContainsPlayers[plyMoves] = true;
-                    plyMoves++;
-                }
+                if (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound();
             }
             else if (radioSingleStepFalse.Checked)
             {
                 while (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound(); // wao amazing
-                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
-                UpdatesPlayersDataGridView();
             }
             else // u gotta pick an option !
             {
-                MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+                UpdatesPlayersDataGridView();
+                MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (SpaceRaceGame.Game_ended)
@@ -366,8 +351,11 @@ namespace GUI_Class
                     };
 
                 }
-                MessageBox.Show("The following players finished the game: \n"+plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The following players finished the game: \n" + plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
             btnReset.Enabled = true;
             btnRoll.Enabled = true;
 
@@ -375,7 +363,7 @@ namespace GUI_Class
 
         private void radioSingleStepTrue_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void radioSingleStepFalse_CheckedChanged(object sender, EventArgs e)
