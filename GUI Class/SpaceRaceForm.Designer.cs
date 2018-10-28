@@ -35,11 +35,6 @@
             this.radioSingleStepFalse = new System.Windows.Forms.RadioButton();
             this.radioSingleStepTrue = new System.Windows.Forms.RadioButton();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
-            this.playerTokenImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rocketFuelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboNumPlayers = new System.Windows.Forms.ComboBox();
             this.labelNumPlayers = new System.Windows.Forms.Label();
             this.btnRoll = new System.Windows.Forms.Button();
@@ -47,6 +42,11 @@
             this.labelPlayers = new System.Windows.Forms.Label();
             this.labelHeader = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
+            this.playerTokenImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rocketFuelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -163,6 +163,89 @@
             this.playersDataGridView.Size = new System.Drawing.Size(191, 197);
             this.playersDataGridView.TabIndex = 7;
             // 
+            // comboNumPlayers
+            // 
+            this.comboNumPlayers.FormattingEnabled = true;
+            this.comboNumPlayers.Items.AddRange(new object[] {
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.comboNumPlayers.Location = new System.Drawing.Point(143, 79);
+            this.comboNumPlayers.Name = "comboNumPlayers";
+            this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
+            this.comboNumPlayers.TabIndex = 6;
+            this.comboNumPlayers.Text = "6";
+            this.comboNumPlayers.SelectedIndexChanged += new System.EventHandler(this.comboNumPlayers_SelectedIndexChanged);
+            // 
+            // labelNumPlayers
+            // 
+            this.labelNumPlayers.AutoSize = true;
+            this.labelNumPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumPlayers.Location = new System.Drawing.Point(24, 82);
+            this.labelNumPlayers.Name = "labelNumPlayers";
+            this.labelNumPlayers.Size = new System.Drawing.Size(110, 13);
+            this.labelNumPlayers.TabIndex = 5;
+            this.labelNumPlayers.Text = "Number of Players";
+            // 
+            // btnRoll
+            // 
+            this.btnRoll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRoll.Location = new System.Drawing.Point(27, 597);
+            this.btnRoll.Name = "btnRoll";
+            this.btnRoll.Size = new System.Drawing.Size(75, 23);
+            this.btnRoll.TabIndex = 4;
+            this.btnRoll.Text = "Roll";
+            this.btnRoll.UseVisualStyleBackColor = true;
+            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Location = new System.Drawing.Point(27, 626);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // labelPlayers
+            // 
+            this.labelPlayers.AutoSize = true;
+            this.labelPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlayers.Location = new System.Drawing.Point(61, 150);
+            this.labelPlayers.Name = "labelPlayers";
+            this.labelPlayers.Size = new System.Drawing.Size(92, 26);
+            this.labelPlayers.TabIndex = 2;
+            this.labelPlayers.Text = "Players";
+            this.labelPlayers.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // labelHeader
+            // 
+            this.labelHeader.AutoSize = true;
+            this.labelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHeader.ForeColor = System.Drawing.Color.Black;
+            this.labelHeader.Location = new System.Drawing.Point(37, 38);
+            this.labelHeader.Name = "labelHeader";
+            this.labelHeader.Size = new System.Drawing.Size(141, 26);
+            this.labelHeader.TabIndex = 1;
+            this.labelHeader.Text = "Space Race";
+            this.labelHeader.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.Location = new System.Drawing.Point(119, 626);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // playerTokenImageDataGridViewImageColumn
             // 
             this.playerTokenImageDataGridViewImageColumn.DataPropertyName = "PlayerTokenImage";
@@ -197,86 +280,6 @@
             // playerBindingSource
             // 
             this.playerBindingSource.DataSource = typeof(Object_Classes.Player);
-            // 
-            // comboNumPlayers
-            // 
-            this.comboNumPlayers.FormattingEnabled = true;
-            this.comboNumPlayers.Items.AddRange(new object[] {
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboNumPlayers.Location = new System.Drawing.Point(143, 79);
-            this.comboNumPlayers.Name = "comboNumPlayers";
-            this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
-            this.comboNumPlayers.TabIndex = 6;
-            this.comboNumPlayers.Text = "6";
-            this.comboNumPlayers.SelectedIndexChanged += new System.EventHandler(this.comboNumPlayers_SelectedIndexChanged);
-            // 
-            // labelNumPlayers
-            // 
-            this.labelNumPlayers.AutoSize = true;
-            this.labelNumPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumPlayers.Location = new System.Drawing.Point(24, 82);
-            this.labelNumPlayers.Name = "labelNumPlayers";
-            this.labelNumPlayers.Size = new System.Drawing.Size(110, 13);
-            this.labelNumPlayers.TabIndex = 5;
-            this.labelNumPlayers.Text = "Number of Players";
-            // 
-            // btnRoll
-            // 
-            this.btnRoll.Location = new System.Drawing.Point(27, 597);
-            this.btnRoll.Name = "btnRoll";
-            this.btnRoll.Size = new System.Drawing.Size(75, 23);
-            this.btnRoll.TabIndex = 4;
-            this.btnRoll.Text = "Roll";
-            this.btnRoll.UseVisualStyleBackColor = true;
-            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(27, 626);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // labelPlayers
-            // 
-            this.labelPlayers.AutoSize = true;
-            this.labelPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPlayers.Location = new System.Drawing.Point(61, 150);
-            this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(92, 26);
-            this.labelPlayers.TabIndex = 2;
-            this.labelPlayers.Text = "Players";
-            this.labelPlayers.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // labelHeader
-            // 
-            this.labelHeader.AutoSize = true;
-            this.labelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeader.ForeColor = System.Drawing.Color.Black;
-            this.labelHeader.Location = new System.Drawing.Point(37, 38);
-            this.labelHeader.Name = "labelHeader";
-            this.labelHeader.Size = new System.Drawing.Size(141, 26);
-            this.labelHeader.TabIndex = 1;
-            this.labelHeader.Text = "Space Race";
-            this.labelHeader.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // exitButton
-            // 
-            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.Location = new System.Drawing.Point(119, 626);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.Text = "Exit";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // SpaceRaceForm
             // 

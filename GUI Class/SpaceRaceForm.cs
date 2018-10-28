@@ -29,8 +29,8 @@ namespace GUI_Class
             SetUpGUIGameBoard();
             SetupPlayersDataGridView();
             DetermineNumberOfPlayers();
-            SpaceRaceGame.SetUpPlayers();
-            PrepareToPlay();
+            //SpaceRaceGame.SetUpPlayers();
+            //PrepareToPlay();
         }
 
 
@@ -154,7 +154,7 @@ namespace GUI_Class
             }
             else
             {
-                // add messagebox or something
+                MessageBox.Show("Please enter a valid player count between 2 and 6.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             // Parse string to a number
 
@@ -284,6 +284,7 @@ namespace GUI_Class
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
             comboNumPlayers.Enabled = true;
             btnReset.Enabled = true;
+            playersDataGridView.Enabled = true;
             SpaceRaceGame.SetUpPlayers();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
@@ -306,7 +307,14 @@ namespace GUI_Class
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
+            if (playersDataGridView.Enabled) // lazy way of telling if it's our first roll
+            {
+                SpaceRaceGame.SetUpPlayers();
+                PrepareToPlay();
+            }
             // trillion iq code ahead
+            playersDataGridView.Enabled = false;
+            btnRoll.Enabled = false;
             comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
@@ -338,12 +346,12 @@ namespace GUI_Class
 
                 }
                 MessageBox.Show("The following players finished the game: \n"+plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                resetGUI();
             }
 
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
             btnReset.Enabled = true;
+            btnRoll.Enabled = true;
 
         }
 
@@ -359,7 +367,7 @@ namespace GUI_Class
 
         private void comboNumPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboNumPlayers.Enabled = false;
+            DetermineNumberOfPlayers();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
