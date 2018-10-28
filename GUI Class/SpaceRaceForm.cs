@@ -28,7 +28,7 @@ namespace GUI_Class
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
             SetupPlayersDataGridView();
-            DetermineNumberOfPlayers();
+            //DetermineNumberOfPlayers();
             //SpaceRaceGame.SetUpPlayers();
             //PrepareToPlay();
         }
@@ -284,9 +284,8 @@ namespace GUI_Class
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
             comboNumPlayers.Enabled = true;
             btnReset.Enabled = true;
-            playersDataGridView.Enabled = true;
+            btnRoll.Enabled = true;
             SpaceRaceGame.SetUpPlayers();
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
         }
 
@@ -307,17 +306,19 @@ namespace GUI_Class
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
-            if (playersDataGridView.Enabled) // lazy way of telling if it's our first roll
+            if (grpboxStep.Enabled) // lazy way of telling if it's our first roll
             {
+                DetermineNumberOfPlayers();
                 SpaceRaceGame.SetUpPlayers();
                 PrepareToPlay();
             }
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
             // trillion iq code ahead
-            playersDataGridView.Enabled = false;
+            //playersDataGridView.Enabled = false;
+            grpboxStep.Enabled = false;
             btnRoll.Enabled = false;
             comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
 
             if (radioSingleStepTrue.Checked)
             {
@@ -327,7 +328,7 @@ namespace GUI_Class
             {
                 while (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound(); // wao amazing
             }
-            else // silly sausage u gotta pick an option !
+            else // u gotta pick an option !
             {
                 UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
                 UpdatesPlayersDataGridView();
@@ -336,6 +337,7 @@ namespace GUI_Class
 
             if (SpaceRaceGame.Game_ended)
             {
+
                 string plyEnd = "";
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {

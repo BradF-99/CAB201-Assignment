@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpboxStep = new System.Windows.Forms.GroupBox();
             this.radioSingleStepFalse = new System.Windows.Forms.RadioButton();
             this.radioSingleStepTrue = new System.Windows.Forms.RadioButton();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
@@ -51,7 +51,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpboxStep.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.grpboxStep);
             this.splitContainer1.Panel2.Controls.Add(this.playersDataGridView);
             this.splitContainer1.Panel2.Controls.Add(this.comboNumPlayers);
             this.splitContainer1.Panel2.Controls.Add(this.labelNumPlayers);
@@ -108,18 +108,18 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(664, 661);
             this.tableLayoutPanel.TabIndex = 0;
             // 
-            // groupBox1
+            // grpboxStep
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.groupBox1.Controls.Add(this.radioSingleStepFalse);
-            this.groupBox1.Controls.Add(this.radioSingleStepTrue);
-            this.groupBox1.Location = new System.Drawing.Point(38, 403);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(140, 55);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Single Step?";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.grpboxStep.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.grpboxStep.Controls.Add(this.radioSingleStepFalse);
+            this.grpboxStep.Controls.Add(this.radioSingleStepTrue);
+            this.grpboxStep.Location = new System.Drawing.Point(38, 403);
+            this.grpboxStep.Name = "grpboxStep";
+            this.grpboxStep.Size = new System.Drawing.Size(140, 55);
+            this.grpboxStep.TabIndex = 8;
+            this.grpboxStep.TabStop = false;
+            this.grpboxStep.Text = "Single Step?";
+            this.grpboxStep.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // radioSingleStepFalse
             // 
@@ -295,8 +295,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpboxStep.ResumeLayout(false);
+            this.grpboxStep.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -320,7 +320,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rocketFuelDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource playerBindingSource;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpboxStep;
         private System.Windows.Forms.RadioButton radioSingleStepFalse;
         private System.Windows.Forms.RadioButton radioSingleStepTrue;
     }
