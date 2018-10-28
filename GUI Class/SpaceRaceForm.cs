@@ -279,6 +279,16 @@ namespace GUI_Class
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
+        private void resetGUI()
+        {
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            comboNumPlayers.Enabled = true;
+            btnReset.Enabled = true;
+            SpaceRaceGame.SetUpPlayers();
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -315,6 +325,22 @@ namespace GUI_Class
                 UpdatesPlayersDataGridView();
                 MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+
+            if (SpaceRaceGame.Game_ended)
+            {
+                string plyEnd = "";
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                {
+                    if (SpaceRaceGame.CheckGameEnd(i))
+                    {
+                        plyEnd = "\n" + plyEnd + SpaceRaceGame.Players[i].Name + " \n";
+                    };
+
+                }
+                MessageBox.Show("The following players finished the game: \n"+plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                resetGUI();
+            }
+
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
             btnReset.Enabled = true;
@@ -338,12 +364,7 @@ namespace GUI_Class
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
-            comboNumPlayers.Enabled = true;
-            btnReset.Enabled = true;
-            SpaceRaceGame.SetUpPlayers();
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
-            UpdatesPlayersDataGridView();
+            resetGUI();
         }
     }// end class
 }
