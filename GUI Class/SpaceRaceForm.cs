@@ -28,6 +28,7 @@ namespace GUI_Class
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
             SetupPlayersDataGridView();
+            btnReset.Enabled = false;
             //DetermineNumberOfPlayers();
             //SpaceRaceGame.SetUpPlayers();
             //PrepareToPlay();
@@ -285,6 +286,8 @@ namespace GUI_Class
             comboNumPlayers.Enabled = true;
             btnReset.Enabled = true;
             btnRoll.Enabled = true;
+            playersDataGridView.Enabled = true;
+            btnReset.Enabled = false;
             SpaceRaceGame.SetUpPlayers();
             UpdatesPlayersDataGridView();
         }
@@ -311,11 +314,12 @@ namespace GUI_Class
                 DetermineNumberOfPlayers();
                 SpaceRaceGame.SetUpPlayers();
                 PrepareToPlay();
+                playersDataGridView.Enabled = false;
+                grpboxStep.Enabled = false;
             }
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
             // trillion iq code ahead
-            //playersDataGridView.Enabled = false;
-            grpboxStep.Enabled = false;
+            
             btnRoll.Enabled = false;
             comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
