@@ -28,9 +28,10 @@ namespace GUI_Class
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
             SetupPlayersDataGridView();
+            btnRoll.Enabled = false;
             btnReset.Enabled = false;
-            //DetermineNumberOfPlayers();
-            //SpaceRaceGame.SetUpPlayers();
+            DetermineNumberOfPlayers();
+            SpaceRaceGame.SetUpPlayers();
             //PrepareToPlay();
         }
 
@@ -284,10 +285,10 @@ namespace GUI_Class
         {
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
             comboNumPlayers.Enabled = true;
-            btnReset.Enabled = true;
-            btnRoll.Enabled = true;
             playersDataGridView.Enabled = true;
             btnReset.Enabled = false;
+            btnRoll.Enabled = false;
+            grpboxStep.Enabled = true;
             SpaceRaceGame.SetUpPlayers();
             UpdatesPlayersDataGridView();
         }
@@ -317,9 +318,8 @@ namespace GUI_Class
                 playersDataGridView.Enabled = false;
                 grpboxStep.Enabled = false;
             }
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
-                                                                     // trillion iq code ahead
 
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
             btnRoll.Enabled = false;
             comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
@@ -339,6 +339,11 @@ namespace GUI_Class
                 MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+            btnReset.Enabled = true;
+            btnRoll.Enabled = true;
+
             if (SpaceRaceGame.Game_ended)
             {
 
@@ -352,23 +357,22 @@ namespace GUI_Class
 
                 }
                 MessageBox.Show("The following players finished the game: \n" + plyEnd, "You're winner!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnRoll.Enabled = false;
             }
 
-            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
-            UpdatesPlayersDataGridView();
-            btnReset.Enabled = true;
-            btnRoll.Enabled = true;
 
         }
 
         private void radioSingleStepTrue_CheckedChanged(object sender, EventArgs e)
         {
-
+            btnRoll.Enabled = true;
+            grpboxStep.Enabled = false;
         }
 
         private void radioSingleStepFalse_CheckedChanged(object sender, EventArgs e)
         {
-
+            btnRoll.Enabled = true;
+            grpboxStep.Enabled = false;
         }
 
         private void comboNumPlayers_SelectedIndexChanged(object sender, EventArgs e)

@@ -111,13 +111,13 @@ namespace Object_Classes {
 
             for (int i = 1; i < NUMBER_OF_SQUARES - 1; i++){ // start at 1 and finish at 54
                 if (wormHoleSquares.Contains(i)){
-                    squares[i] = new WormholeSquare("Wormhole", i, wormHoles[wormHoleCount, 1], wormHoles[wormHoleCount, 2]); // what does name need to be?
+                    squares[i] = new WormholeSquare(i.ToString(), i, wormHoles[wormHoleCount, 1], wormHoles[wormHoleCount, 2]); // what does name need to be?
                     wormHoleCount++;
                 } else if (blackHoleSquares.Contains(i)){
-                    squares[i] = new BlackholeSquare("Blackhole", i, blackHoles[blackHoleCount, 1], blackHoles[blackHoleCount, 2]);
+                    squares[i] = new BlackholeSquare(i.ToString(), i, blackHoles[blackHoleCount, 1], blackHoles[blackHoleCount, 2]);
                     blackHoleCount++;
                 } else {
-                    squares[i] = new Square("Ordinary",i);
+                    squares[i] = new Square(i.ToString(), i);
                 }
             }
 
@@ -136,11 +136,8 @@ namespace Object_Classes {
         /// <param name="squareNum"> a square number of either a Wormhole or Blackhole square</param>
         /// <param name="destNum"> destination square's number</param>
         /// <param name="amount"> amont of fuel used to jump to the deestination square</param>
-        /// STATUS: Ready for Review
-        /// NOTES: Completely unused and not necessary: checked with tutor.
-        /// TESTED: No
         private static void FindDestSquare(int[,] holes, int squareNum, out int destNum, out int amount) {
-            const int start = 0, exit = 1, fuel = 2;
+            const int /*start = 0,*/ exit = 1, fuel = 2;
             destNum = 0; amount = 0;
 
             destNum = holes[squareNum,exit];
