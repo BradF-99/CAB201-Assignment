@@ -8,8 +8,5 @@ When you wait for Codacy to tell you not to use Console.WriteLine 😂 👌 💯
 
 ## To Do
 
-* Implement GUI
-* Complete Console Class output re-formatting
-* Fix File I/O - doesn't seem to be getting expected results
-* Test if game detects player running out of fuel
-* Make sure PlayOneRound() is less than 20 SLoC - per tutor instructions
+* Finish GUI
+* Test File I/O
