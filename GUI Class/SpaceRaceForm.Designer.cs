@@ -212,6 +212,7 @@
             this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
             this.comboNumPlayers.TabIndex = 6;
             this.comboNumPlayers.Text = "6";
+            this.comboNumPlayers.SelectedIndexChanged += new System.EventHandler(this.comboNumPlayers_SelectedIndexChanged);
             // 
             // labelNumPlayers
             // 
@@ -241,6 +242,7 @@
             this.btnReset.TabIndex = 3;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // labelPlayers
             // 

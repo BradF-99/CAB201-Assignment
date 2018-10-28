@@ -44,17 +44,6 @@ namespace GUI_Class
             Environment.Exit(0);
         }
 
-
-
-        //  ******************* Uncomment - Remove Block Comment below
-        //                         once you've added the TableLayoutPanel to your form.
-        //
-        //       You will have to replace "tableLayoutPanel" by whatever (Name) you used.
-        //
-        //        Likewise with "playerDataGridView" by your DataGridView (Name)
-        //  ******************************************************************************************
-
-
         /// <summary>
         /// Resizes the entire form, so that the individual squares have their correct size, 
         /// as specified by SquareControl.SQUARE_SIZE.  
@@ -308,12 +297,13 @@ namespace GUI_Class
         private void btnRoll_Click(object sender, EventArgs e)
         {
             // trillion iq code ahead
+            comboNumPlayers.Enabled = false;
             btnReset.Enabled = false;
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
 
             if (radioSingleStepTrue.Checked)
             {
-                SpaceRaceGame.PlayOneRound();
+                if(!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound();
             }
             else if (radioSingleStepFalse.Checked)
             {
@@ -340,6 +330,20 @@ namespace GUI_Class
         {
 
         }
-        
+
+        private void comboNumPlayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboNumPlayers.Enabled = false;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            comboNumPlayers.Enabled = true;
+            btnReset.Enabled = true;
+            SpaceRaceGame.SetUpPlayers();
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+        }
     }// end class
 }
