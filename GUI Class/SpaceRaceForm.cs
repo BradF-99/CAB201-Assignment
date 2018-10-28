@@ -30,7 +30,7 @@ namespace GUI_Class
             SetupPlayersDataGridView();
             DetermineNumberOfPlayers();
             SpaceRaceGame.SetUpPlayers();
-            //PrepareToPlayGame();
+            PrepareToPlay();
         }
 
 
@@ -248,9 +248,7 @@ namespace GUI_Class
         private int GetSquareNumberOfPlayer(int playerNumber)
         {
             // Code needs to be added here.
-
-            //     delete the "return -1;" once body of method has been written 
-            return -1;
+            return SpaceRaceGame.Players[playerNumber].Position;
         }//end GetSquareNumberOfPlayer
 
 
@@ -307,7 +305,14 @@ namespace GUI_Class
             //       using the typeOfGuiUpdate, update the appropriate element of 
             //          the ContainsPlayers array of the SquareControl object.
             //          
-            
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++) // loop through each player
+            {
+                int squareNum = GetSquareNumberOfPlayer(i);
+                SquareControl plySquare = SquareControlAt(squareNum);
+                if (typeOfGuiUpdate == TypeOfGuiUpdate.AddPlayer) plySquare.ContainsPlayers[i] = true;
+                if (typeOfGuiUpdate == TypeOfGuiUpdate.RemovePlayer) plySquare.ContainsPlayers[i] = false;
+            } 
+
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
@@ -322,6 +327,42 @@ namespace GUI_Class
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRoll_Click(object sender, EventArgs e)
+        {
+            // trillion iq code ahead
+            btnReset.Enabled = false;
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer); // remove all the tokens before the round so we can paint them later
+
+            if (radioSingleStepTrue.Checked)
+            {
+                SpaceRaceGame.PlayOneRound();
+            }
+            else if (radioSingleStepFalse.Checked)
+            {
+                while (!SpaceRaceGame.Game_ended) SpaceRaceGame.PlayOneRound(); // wao amazing
+            }
+            else // silly sausage u gotta pick an option !
+            {
+                UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+                UpdatesPlayersDataGridView();
+                MessageBox.Show("Please select a step option.", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+            btnReset.Enabled = true;
+
+        }
+
+        private void radioSingleStepTrue_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioSingleStepFalse_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -30,30 +30,30 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.exitButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.labelHeader = new System.Windows.Forms.Label();
-            this.labelPlayers = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnRoll = new System.Windows.Forms.Button();
-            this.labelNumPlayers = new System.Windows.Forms.Label();
-            this.comboNumPlayers = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioSingleStepFalse = new System.Windows.Forms.RadioButton();
+            this.radioSingleStepTrue = new System.Windows.Forms.RadioButton();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
-            this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerTokenImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rocketFuelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioSingleStepTrue = new System.Windows.Forms.RadioButton();
-            this.radioSingleStepFalse = new System.Windows.Forms.RadioButton();
+            this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboNumPlayers = new System.Windows.Forms.ComboBox();
+            this.labelNumPlayers = new System.Windows.Forms.Label();
+            this.btnRoll = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.labelPlayers = new System.Windows.Forms.Label();
+            this.labelHeader = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,17 +80,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(884, 661);
             this.splitContainer1.SplitterDistance = 664;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // exitButton
-            // 
-            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.Location = new System.Drawing.Point(119, 626);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.Text = "Exit";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // tableLayoutPanel
             // 
@@ -119,71 +108,42 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(664, 661);
             this.tableLayoutPanel.TabIndex = 0;
             // 
-            // labelHeader
+            // groupBox1
             // 
-            this.labelHeader.AutoSize = true;
-            this.labelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeader.ForeColor = System.Drawing.Color.Black;
-            this.labelHeader.Location = new System.Drawing.Point(37, 38);
-            this.labelHeader.Name = "labelHeader";
-            this.labelHeader.Size = new System.Drawing.Size(141, 26);
-            this.labelHeader.TabIndex = 1;
-            this.labelHeader.Text = "Space Race";
-            this.labelHeader.Click += new System.EventHandler(this.label1_Click);
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.groupBox1.Controls.Add(this.radioSingleStepFalse);
+            this.groupBox1.Controls.Add(this.radioSingleStepTrue);
+            this.groupBox1.Location = new System.Drawing.Point(40, 349);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(140, 55);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Single Step?";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // labelPlayers
+            // radioSingleStepFalse
             // 
-            this.labelPlayers.AutoSize = true;
-            this.labelPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPlayers.Location = new System.Drawing.Point(61, 150);
-            this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(92, 26);
-            this.labelPlayers.TabIndex = 2;
-            this.labelPlayers.Text = "Players";
-            this.labelPlayers.Click += new System.EventHandler(this.label1_Click_1);
+            this.radioSingleStepFalse.AutoSize = true;
+            this.radioSingleStepFalse.Location = new System.Drawing.Point(82, 20);
+            this.radioSingleStepFalse.Name = "radioSingleStepFalse";
+            this.radioSingleStepFalse.Size = new System.Drawing.Size(39, 17);
+            this.radioSingleStepFalse.TabIndex = 1;
+            this.radioSingleStepFalse.TabStop = true;
+            this.radioSingleStepFalse.Text = "No";
+            this.radioSingleStepFalse.UseVisualStyleBackColor = true;
+            this.radioSingleStepFalse.CheckedChanged += new System.EventHandler(this.radioSingleStepFalse_CheckedChanged);
             // 
-            // btnReset
+            // radioSingleStepTrue
             // 
-            this.btnReset.Location = new System.Drawing.Point(27, 626);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btnRoll
-            // 
-            this.btnRoll.Location = new System.Drawing.Point(27, 597);
-            this.btnRoll.Name = "btnRoll";
-            this.btnRoll.Size = new System.Drawing.Size(75, 23);
-            this.btnRoll.TabIndex = 4;
-            this.btnRoll.Text = "Roll";
-            this.btnRoll.UseVisualStyleBackColor = true;
-            // 
-            // labelNumPlayers
-            // 
-            this.labelNumPlayers.AutoSize = true;
-            this.labelNumPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumPlayers.Location = new System.Drawing.Point(24, 82);
-            this.labelNumPlayers.Name = "labelNumPlayers";
-            this.labelNumPlayers.Size = new System.Drawing.Size(110, 13);
-            this.labelNumPlayers.TabIndex = 5;
-            this.labelNumPlayers.Text = "Number of Players";
-            // 
-            // comboNumPlayers
-            // 
-            this.comboNumPlayers.FormattingEnabled = true;
-            this.comboNumPlayers.Items.AddRange(new object[] {
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.comboNumPlayers.Location = new System.Drawing.Point(143, 79);
-            this.comboNumPlayers.Name = "comboNumPlayers";
-            this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
-            this.comboNumPlayers.TabIndex = 6;
-            this.comboNumPlayers.Text = "6";
+            this.radioSingleStepTrue.AutoSize = true;
+            this.radioSingleStepTrue.Location = new System.Drawing.Point(14, 20);
+            this.radioSingleStepTrue.Name = "radioSingleStepTrue";
+            this.radioSingleStepTrue.Size = new System.Drawing.Size(43, 17);
+            this.radioSingleStepTrue.TabIndex = 0;
+            this.radioSingleStepTrue.TabStop = true;
+            this.radioSingleStepTrue.Text = "Yes";
+            this.radioSingleStepTrue.UseVisualStyleBackColor = true;
+            this.radioSingleStepTrue.CheckedChanged += new System.EventHandler(this.radioSingleStepTrue_CheckedChanged);
             // 
             // playersDataGridView
             // 
@@ -202,10 +162,6 @@
             this.playersDataGridView.RowHeadersVisible = false;
             this.playersDataGridView.Size = new System.Drawing.Size(191, 150);
             this.playersDataGridView.TabIndex = 7;
-            // 
-            // playerBindingSource
-            // 
-            this.playerBindingSource.DataSource = typeof(Object_Classes.Player);
             // 
             // playerTokenImageDataGridViewImageColumn
             // 
@@ -238,41 +194,87 @@
             this.rocketFuelDataGridViewTextBoxColumn.ReadOnly = true;
             this.rocketFuelDataGridViewTextBoxColumn.Width = 50;
             // 
-            // groupBox1
+            // playerBindingSource
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.groupBox1.Controls.Add(this.radioSingleStepFalse);
-            this.groupBox1.Controls.Add(this.radioSingleStepTrue);
-            this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(40, 349);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(140, 55);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Single Step?";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.playerBindingSource.DataSource = typeof(Object_Classes.Player);
             // 
-            // radioSingleStepTrue
+            // comboNumPlayers
             // 
-            this.radioSingleStepTrue.AutoSize = true;
-            this.radioSingleStepTrue.Location = new System.Drawing.Point(14, 20);
-            this.radioSingleStepTrue.Name = "radioSingleStepTrue";
-            this.radioSingleStepTrue.Size = new System.Drawing.Size(43, 17);
-            this.radioSingleStepTrue.TabIndex = 0;
-            this.radioSingleStepTrue.TabStop = true;
-            this.radioSingleStepTrue.Text = "Yes";
-            this.radioSingleStepTrue.UseVisualStyleBackColor = true;
+            this.comboNumPlayers.FormattingEnabled = true;
+            this.comboNumPlayers.Items.AddRange(new object[] {
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.comboNumPlayers.Location = new System.Drawing.Point(143, 79);
+            this.comboNumPlayers.Name = "comboNumPlayers";
+            this.comboNumPlayers.Size = new System.Drawing.Size(35, 21);
+            this.comboNumPlayers.TabIndex = 6;
+            this.comboNumPlayers.Text = "6";
             // 
-            // radioSingleStepFalse
+            // labelNumPlayers
             // 
-            this.radioSingleStepFalse.AutoSize = true;
-            this.radioSingleStepFalse.Location = new System.Drawing.Point(82, 20);
-            this.radioSingleStepFalse.Name = "radioSingleStepFalse";
-            this.radioSingleStepFalse.Size = new System.Drawing.Size(39, 17);
-            this.radioSingleStepFalse.TabIndex = 1;
-            this.radioSingleStepFalse.TabStop = true;
-            this.radioSingleStepFalse.Text = "No";
-            this.radioSingleStepFalse.UseVisualStyleBackColor = true;
+            this.labelNumPlayers.AutoSize = true;
+            this.labelNumPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumPlayers.Location = new System.Drawing.Point(24, 82);
+            this.labelNumPlayers.Name = "labelNumPlayers";
+            this.labelNumPlayers.Size = new System.Drawing.Size(110, 13);
+            this.labelNumPlayers.TabIndex = 5;
+            this.labelNumPlayers.Text = "Number of Players";
+            // 
+            // btnRoll
+            // 
+            this.btnRoll.Location = new System.Drawing.Point(27, 597);
+            this.btnRoll.Name = "btnRoll";
+            this.btnRoll.Size = new System.Drawing.Size(75, 23);
+            this.btnRoll.TabIndex = 4;
+            this.btnRoll.Text = "Roll";
+            this.btnRoll.UseVisualStyleBackColor = true;
+            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(27, 626);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            // 
+            // labelPlayers
+            // 
+            this.labelPlayers.AutoSize = true;
+            this.labelPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlayers.Location = new System.Drawing.Point(61, 150);
+            this.labelPlayers.Name = "labelPlayers";
+            this.labelPlayers.Size = new System.Drawing.Size(92, 26);
+            this.labelPlayers.TabIndex = 2;
+            this.labelPlayers.Text = "Players";
+            this.labelPlayers.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // labelHeader
+            // 
+            this.labelHeader.AutoSize = true;
+            this.labelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHeader.ForeColor = System.Drawing.Color.Black;
+            this.labelHeader.Location = new System.Drawing.Point(37, 38);
+            this.labelHeader.Name = "labelHeader";
+            this.labelHeader.Size = new System.Drawing.Size(141, 26);
+            this.labelHeader.TabIndex = 1;
+            this.labelHeader.Text = "Space Race";
+            this.labelHeader.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.Location = new System.Drawing.Point(119, 626);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // SpaceRaceForm
             // 
@@ -288,10 +290,10 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
