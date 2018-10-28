@@ -14,7 +14,6 @@ namespace GUI_Class
         [STAThread]
         static void Main()
         {
-            return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SpaceRaceForm());
